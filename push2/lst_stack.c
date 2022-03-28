@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-t_node	*lst_stack(char *str, t_stack *a)
+t_node	*lst_stack(char *str, t_stack *a, int *index)
 {
 	t_node	*lst;
 
@@ -11,6 +11,8 @@ t_node	*lst_stack(char *str, t_stack *a)
 	lst->prev = a->top;
 	lst->next = NULL;
 	lst->value = ft_atoi(str);
+	lst->index = *index;
 	a->size++;
+	*index = *index + 1;
 	return (lst);
 }
