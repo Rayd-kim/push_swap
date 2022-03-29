@@ -95,7 +95,8 @@ int	main(int argc, char *argv[])
 		return (0);
 	}
 	sort_arr(a);
-	sort_3arg(a);
+	//sort_3arg(a);
+	a_to_b(a, b, a->size);
 	temp = a->top;
 	while (i < a->size)
 	{
