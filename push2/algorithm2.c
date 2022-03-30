@@ -84,6 +84,7 @@ void	a_to_b(t_stack *a, t_stack *b, int num)
 	int	pb_num;
 	int	rb_num;
 	int	rb_temp;
+	int	ra_temp = 0;
 
 	if (num <= 1)
 		return ;
@@ -111,6 +112,12 @@ void	a_to_b(t_stack *a, t_stack *b, int num)
 		num--;
 	}
 	rb_temp = rb_num;
+	ra_temp = ra_num;
+	while (ra_temp > 0)
+	{
+		rra(a);
+		ra_temp--;
+	}
 	while (rb_temp > 0)
 	{
 		rrb(b);
@@ -130,7 +137,7 @@ void	set_pivot_b(t_node *top, int num, int *pivot1, int *pivot2)
 	max = top->index;
 	min = top->index;
 	temp = top->prev;
-	while (0 < num)
+	while (1 < num)
 	{
 		if (temp->index > max)
 			max = temp->index;
@@ -151,7 +158,7 @@ void	b_to_a(t_stack *a, t_stack *b, int num)
 	int	rb_num;
 	int	ra_num;
 	int	ra_temp;
-
+	int	rb_temp = 0;
 	if (num < 1)
 		return ;
 	if (num == 1)
@@ -183,6 +190,12 @@ void	b_to_a(t_stack *a, t_stack *b, int num)
 		num--;
 	}
 	ra_temp = ra_num;
+	rb_temp = rb_num;
+	while (rb_temp > 0)
+	{
+		rrb(b);
+		rb_temp--;
+	}
 	a_to_b(a, b, pa_num - ra_num);
 	while (ra_temp > 0)
 	{
@@ -190,4 +203,5 @@ void	b_to_a(t_stack *a, t_stack *b, int num)
 		ra_temp--;
 	}
 	a_to_b(a, b, ra_num);
+	b_to_a(a, b, rb_num);
 }

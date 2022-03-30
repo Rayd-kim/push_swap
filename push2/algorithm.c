@@ -105,7 +105,7 @@ int	main(int argc, char *argv[])
 		temp = temp->prev;
 		i++;
 	}
-	/*
+	
 	//printf("%p\n", a->top);
 	//printf("%p\n", a->bottom);
 	i = 0;
@@ -117,12 +117,5 @@ int	main(int argc, char *argv[])
 		temp = temp->prev;
 		i++;
 	}
-
-	pa(a, b);
-	pa(a, b);
-
-	printf("%p\n", b->top);
-	printf("%p\n", b->bottom);
-	*/
 	return (0);
 }
