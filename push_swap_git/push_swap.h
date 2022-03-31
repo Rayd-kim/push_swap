@@ -33,6 +33,14 @@ void	rr(t_stack *a, t_stack *b);
 void	rra(t_stack *a);
 void	rrb(t_stack *b);
 void    rrr(t_stack *a, t_stack *b);
-void	sort_3arg(t_stack *a);
+void	sort_2arg(t_stack *a, t_stack *b);
+void	sort_5arg(t_stack *a, t_stack *b);
+void	sort_3arg(t_stack *a, t_stack *b);
+void	sort_3arg_b(t_stack *a, t_stack *b);
 void	a_to_b(t_stack *a, t_stack *b, int num);
+void	max_min(t_stack *stack, int *max, int *min, int num);
+void	b_to_a(t_stack *a, t_stack *b, int num);
+void	*ft_memset(void *b, int c, size_t n);
+char	**ft_split(char const *s, char c);
+size_t	ft_strlen(const char *str);
 #endif

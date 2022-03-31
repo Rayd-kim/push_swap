@@ -76,6 +76,31 @@ static void	sort_arr(t_stack *a)
 
 int	main(int argc, char *argv[])
 {
+	/*
+	t_stack	*a;
+	t_stack	*b;
+	int		i;
+
+	a = newstack();
+	b = newstack();
+	if (null_check(a, b) == -1)
+	{
+		write (1, "Error\n", 6);
+		return (0);
+	}
+	i = 0;
+	if (push_swap(argc, argv, a, b) == -1)
+	{
+		write (1, "Error\n", 6);
+		return (0);
+	}
+	sort_arr(a);
+	if (a->size == 5)
+		sort_5arg(a, b);
+	else
+	
+	a_to_b(a, b, a->size);
+	*/
 	t_node	*temp;
 	t_stack	*a;
 	t_stack	*b;
@@ -95,8 +120,8 @@ int	main(int argc, char *argv[])
 		return (0);
 	}
 	sort_arr(a);
-	//sort_3arg(a);
 	a_to_b(a, b, a->size);
+
 	temp = a->top;
 	while (i < a->size)
 	{
@@ -105,9 +130,7 @@ int	main(int argc, char *argv[])
 		temp = temp->prev;
 		i++;
 	}
-	
-	//printf("%p\n", a->top);
-	//printf("%p\n", a->bottom);
+	/*
 	i = 0;
 	temp = b->top;
 	while (i < b->size)
@@ -117,5 +140,6 @@ int	main(int argc, char *argv[])
 		temp = temp->prev;
 		i++;
 	}
+	*/
 	return (0);
 }

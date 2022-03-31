@@ -2,51 +2,106 @@
 
 void	b_to_a(t_stack *a, t_stack *b, int num);
 
-void	sort_3arg(t_stack *a)
+
+void	sort_2arg(t_stack *a, t_stack *b)
+{
+	int	sa_num;
+	int	sb_num;
+
+	sa_num = 0;
+	sb_num = 0;
+	if (a->size >= 2 && (a->top->index > a->top->prev->index))
+		sa_num++;
+	if (b->size >= 2 && (b->top->index < b->top->prev->index))
+		sb_num++;
+	if (sa_num > 0 && sb_num > 0)
+		ss(a, b);
+	else if (sa_num > 0 && sb_num == 0)
+		sa(a);
+	else if (sa_num == 0 && sb_num > 0)
+		sb(b);
+}
+
+void	sort_3arg(t_stack *a, t_stack *b)
 {
 	int	min;
 	int	max;
 	t_node	*temp;
 	int	i;
 
-	max = -1;
-	min = 2147483647;
 	i = 0;
-	temp = a->top;
-	while (i < 3 || temp != NULL)
+	max = a->top->index;
+	min = a->top->index;
+	temp = a->top->prev;
+	while (++i < 3)
 	{
-		if (temp->index > max)
+		if (max < temp->index)
 			max = temp->index;
-		if (temp->index < min)
+		else if (min > temp->index)
 			min = temp->index;
 		temp = temp->prev;
-		i++;
 	}
-	if (a->top->index == max && a->top->index - a->top->prev->index == 2)
-	{
-		rra(a);
+	if ((a->top->index == max) || a->top->prev->index == min)
 		sa(a);
-	}
-	else if(a->top->index == min && a->top->index - a->top->prev->index == -1)
-	{
+	if (a->top->prev->index == max)
+	{	
 		ra(a);
 		sa(a);
-	}
-	else if (a->top->index == min && a->top->index - a->top->prev->index == -2)
-		ra(a);
-	else if ((a->top->index != max && a->top->index != min)	&& a->top->index - a->top->prev->index == -1)
-		sa(a);
-	else if ((a->top->index != max && a->top->index != min) && a->top->index - a->top->prev->index == 1)
 		rra(a);
+	}
+	if (a->top->prev->index == min)
+		sort_2arg(a, b);
 }
 
-void	sort_2arg(t_stack *a)
+/*
+void	sort_2arg_b(t_stack *a, t_stack *b)
 {
+	if (b->top->index < b->top->prev->index)
+	{	
+		sb(b);
+		pa(a, b);
+		pa(a, b);
+	}
+	else
+	{
+		pa(a, b);
+		pa(a, b);
+	}
+}
+*/
+void	sort_5arg(t_stack *a, t_stack *b)
+{
+	int	i;
+	int	max;
+	int	min;
+	int	mid;
 	t_node	*temp;
 
-	temp = a->top;
-	if (temp->index > temp->prev->index)
-		sa(a);
+	i = 0;
+	max = a->top->index;
+	min = a->top->index;
+	temp = a->top->prev;
+	while (++i < 5)
+	{
+		if (max < temp->index)
+			max = temp->index;
+		else if (min > temp->index)
+			min = temp->index;
+		temp = temp->prev;
+	}
+	mid = (max + min) / 2;
+	i = 0;
+	while (++i < 6)
+	{
+		if (a->top->index < mid)
+			pb(b, a);
+		else
+			ra(a);
+	}
+	sort_3arg(a, b);
+	sort_2arg(a, b);
+	pb(b, a);
+	pb(b, a);
 }
 
 void	set_pivot_a(t_node *top, int num, int *pivot1, int *pivot2)
@@ -75,9 +130,6 @@ void	set_pivot_a(t_node *top, int num, int *pivot1, int *pivot2)
 
 void	a_to_b(t_stack *a, t_stack *b, int num)
 {
-	//여기서 처음에 num으로 넘어오는 인자는 스택의 크기이다.
-	//pivot보다 큰 부분은 b로, 아닌것들은 ra로 밑으로 내려준다.
-	//num만큼 다 돌아가면, ra한 것들이 다시 올라와있을 테니, 다시 ra로 내려준다.
 	int	ra_num;
 	int	pivot1;
 	int	pivot2;
@@ -88,6 +140,21 @@ void	a_to_b(t_stack *a, t_stack *b, int num)
 
 	if (num <= 1)
 		return ;
+	if (num == 2)
+	{
+		sort_2arg(a, b);
+		return ;
+	}
+	if (num == 3)
+	{
+		sort_3arg(a, b);
+		return ;
+	}
+	/*if (num == 5)
+	{
+		sort_5arg(a, b);
+		return ;
+	}*/
 	ra_num = 0;
 	pb_num = 0;
 	rb_num = 0;
@@ -176,15 +243,22 @@ void	b_to_a(t_stack *a, t_stack *b, int num)
 		{
 			pa(a, b);
 			pa_num++;
-		}
-		else
-		{
-			rb(b);
 			if (a->top->index < pivot2)
 			{
 				ra(a);
 				ra_num++;
 			}
+		}
+		else
+		{
+			rb(b);
+			/*
+			if (a->top->index < pivot2)
+			{
+				ra(a);
+				ra_num++;
+			}
+			*/
 			rb_num++;
 		}
 		num--;

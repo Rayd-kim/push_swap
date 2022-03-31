@@ -6,16 +6,16 @@
 #    By: youskim <youskim@student.42seoul.k>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/28 15:06:10 by youskim           #+#    #+#              #
-#    Updated: 2022/03/28 18:45:04 by youskim          ###   ########.fr        #
+#    Updated: 2022/03/31 19:01:33 by youskim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 CC = gcc
 W = -Wall -Wextra -Werror
-FILE = push_swap.c lst_first.c lst_stack.c algorithm.c algorithm2.c ft_atoi.c newstack.c operation_a.c operation_b.c
+FILE = push_swap.c lst_first.c lst_stack.c algorithm.c ft_atoi.c newstack.c operation_a.c operation_b.c ft_split.c ft_strlen.c ft_memset.c max_min.c a_to_b.c b_to_a.c sort_algorithm.c
 
 all : $(NAME)
 
 $(NAME) : $(FILE)
-	$(CC) $(W) $^
+	$(CC) $(W) $^ -o $(NAME)

@@ -12,6 +12,7 @@ void	sb(t_stack *b)
 	temp = b->top->index;
 	b->top->index = b->top->prev->index;
 	b->top->prev->index = temp;
+	write (1, "sb\n", 3);
 }
 
 void	pb(t_stack *b, t_stack *a)
@@ -34,6 +35,7 @@ void	pb(t_stack *b, t_stack *a)
 	a->size--;
 	if (a->size == 0)
 		a->bottom = NULL;
+	write (1, "pb\n", 3);
 }
 
 void	rb(t_stack *b)
@@ -49,6 +51,7 @@ void	rb(t_stack *b)
 	b->top = b->top->prev;
 	temp->prev = NULL;
 	b->bottom = temp;
+	write (1, "rb\n", 3);
 }
 
 void	rrb(t_stack *b)
@@ -64,10 +67,30 @@ void	rrb(t_stack *b)
 	b->top->next = temp;
 	temp->next = NULL;
 	b->top = temp;
+	write (1, "rrb\n", 4);
 }
 
-void    rrr(t_stack *a, t_stack *b)
+void	rrr(t_stack *a, t_stack *b)
 {
-    rra(a);
-    rrb(b);
+	t_node	*temp;
+
+	if (a->size < 2)
+		return ;
+	temp = a->bottom;
+	a->bottom->next->prev = NULL;
+	a->bottom->prev = a->top;
+	a->bottom = a->bottom->next;
+	a->top->next = temp;
+	temp->next = NULL;
+	a->top = temp;
+	if (b->size < 2)
+		return ;
+	temp = b->bottom;
+	b->bottom->next->prev = NULL;
+	b->bottom->prev = b->top;
+	b->bottom = b->bottom->next;
+	b->top->next = temp;
+	temp->next = NULL;
+	b->top = temp;
+	write (1, "rrr\n", 4);
 }

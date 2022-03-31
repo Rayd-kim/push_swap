@@ -21,13 +21,13 @@ int	error_check(int	argc, char *argv[])
 
 	i = 1;
 	if (argc == 1)
-		return (-1);
+		return (1);
 	while (i < argc)
 	{
 		k = 0;
 		while (argv[i][k] != '\0')
 		{
-			if (argv[i][k] < '0' || argv[i][k] > '9')
+			if ((argv[i][k] < '0' || argv[i][k] > '9') && (argv[i][k] != ' '))
 				return (-1);
 			k++;
 		}
@@ -49,24 +49,23 @@ int	null_check(t_stack *a, t_stack *b)
 int	push_swap(int argc, char *argv[], t_stack *a, t_stack *b)
 {
 	int			i;
-	//t_stack	*a;
-	//t_stack	*b;
 	static int	index = 0;
+	char	**split;
 
-	i = 1;
+	split = NULL;
 	if (error_check(argc, argv) == -1)
 		return (-1);
-	//a = newstack();
-	//b = newstack();
-	//if (null_check(a, b) == -1)
-	//	return (-1);
-	while (i < argc)
+	if (error_check(argc, argv) == 1)
+		return (0);
+	i = 0;
+	split = ft_split(argv[1], ' ');
+	while (split[i] != NULL)
 	{
-		if (i == 1)
-			set_first_stack(argv[i], a, &index);
+		if (i == 0)
+			set_first_stack(split[i], a, &index);
 		else
-			a->top = lst_stack(argv[i], a, &index);
-		if (a->top == NULL)
+			a->bottom = lst_stack(split[i], a, &index);
+		if (a->bottom == NULL)
 		{
 			error_free(a, b);
 			return (-1);
