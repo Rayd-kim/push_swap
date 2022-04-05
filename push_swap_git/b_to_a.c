@@ -63,44 +63,56 @@ void	sort_in_range_b(t_stack *a, t_stack *b, int num, t_num *numbers)
 void	b_to_a(t_stack *a, t_stack *b, int num, int *first)
 {
 	t_num	*numbers;
+	t_node	*node;
+	int		temp;
 
 	*first = *first + 1;
 	numbers = (t_num *)malloc(sizeof(t_num));
 	if (numbers == 0)
 		return ;
-	/*
-	if (num < 1)
-		return ;
-	if (num == 1)
+	temp = num;
+	node = b->top;
+	while (temp > 1)
 	{
-		pa(a, b);
-		return ;
+		if (node->index - node->prev->index == 1)
+			temp--;
+		else
+			break;
+		if (temp == 1)
+		{
+			while (num > 0)
+			{
+				pa(a, b);
+				num--;
+			}		
+			return ;
+		}
+		node = node->prev;
 	}
-	if (num == 2)
-	{
-		sort_2arg(a, b);
-		pa(a, b);
-		pa(a, b);
-		return ;
-	}
-	if (num == 3)
-	{
-		sort_3arg_b(a, b);
-		return ;
-	}
-	*/
-	if (num <= 3)
+	if (num <= 6)
 	{
 		if (num == 1)
 			pa(a, b);
 		else if (num == 2)
 		{
-			sort_2arg(a, b);
+			sort_2arg(a, b, num);
 			pa(a, b);
 			pa(a, b);
 		}
+		else if (num == 3 && b->size == 3)
+			sort_only3arg_b(a, b);
 		else if (num == 3)
-			sort_3arg_b(a, b);
+			sort_3arg_b(a, b, num);
+		else if (num == 4)
+			sort_4arg_b(a, b, num);
+		else if (num == 5 && b->size == 5)
+			sort_only5arg_b(a, b);
+		else if (num == 5)
+			sort_5arg_b(a, b, num);
+		else if (num == 6 && b->size == 6)
+			sort_only6arg_b(a, b);
+		else if (num == 6)
+			sort_6arg_b(a, b, num);
 		return ;
 	}
 	ft_memset(numbers, 0, sizeof(t_num));

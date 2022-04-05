@@ -20,16 +20,17 @@ int	error_check(int	argc, char *argv[])
 	int	k;
 
 	i = 1;
-	if (argc == 1)
-		return (1);
 	while (i < argc)
 	{
 		k = 0;
 		while (argv[i][k] != '\0')
 		{
-			if ((argv[i][k] < '0' || argv[i][k] > '9') && (argv[i][k] != ' '))
+			if (argv[i][k] >= '0' && argv[i][k] <= '9')
+				k++;
+			else if (argv[i][k] == '+' || argv[i][k] == '-' || argv[i][k] == ' ')
+				k++;
+			else
 				return (-1);
-			k++;
 		}
 		i++;
 	}
@@ -46,31 +47,63 @@ int	null_check(t_stack *a, t_stack *b)
 	return (0);
 }
 
+int	check_split(char **split)
+{
+	int	pm_num;
+	int	i;
+	int	k;
+
+	if (split[0] == NULL)
+		return (-1);
+	i = 0;
+	while (split[i] != NULL)
+	{
+		k = 0;
+		pm_num = 0;
+		while (split[i][k] != '\0')
+		{
+			if (split[i][k] == '-' || split[i][k] == '+')
+				pm_num++;
+			k++;
+		}
+		if (pm_num > 1)
+			return (-1);
+		i++;
+	}
+	return (0);
+}
+
+
 int	push_swap(int argc, char *argv[], t_stack *a, t_stack *b)
 {
 	int			i;
+	int			k;
 	static int	index = 0;
-	char	**split;
+	char		**split;
 
-	split = NULL;
 	if (error_check(argc, argv) == -1)
 		return (-1);
-	if (error_check(argc, argv) == 1)
-		return (0);
-	i = 0;
-	split = ft_split(argv[1], ' ');
-	while (split[i] != NULL)
+	k = 1;
+	while (k < argc)
 	{
-		if (i == 0)
-			set_first_stack(split[i], a, &index);
-		else
-			a->bottom = lst_stack(split[i], a, &index);
-		if (a->bottom == NULL)
-		{
-			error_free(a, b);
+		split = ft_split(argv[k], ' ');
+		if (check_split(split) == -1)
 			return (-1);
+		i = 0;
+		while (split[i] != NULL)
+		{
+			if (i == 0 && k == 1)
+				set_first_stack(split[i], a, &index);
+			else
+				a->bottom = lst_stack(split[i], a, &index);
+			if (a->bottom == NULL)
+			{
+				error_free(a, b);
+				return (-1);
+			}
+			i++;
 		}
-		i++;
+		k++;
 	}
 	return (0);
 }

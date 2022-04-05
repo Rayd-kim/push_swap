@@ -47,7 +47,7 @@ void	set_pivot_a(t_stack *a, int num, int *pivot1, int *pivot2)
 }
 
 void	sort_in_range_a(t_stack *a, t_stack *b, int num, t_num *numbers)
-{
+{	
 	while (num > 0)
 	{
 		if (a->top->index > numbers->pivot1)
@@ -68,6 +68,8 @@ void	sort_in_range_a(t_stack *a, t_stack *b, int num, t_num *numbers)
 		num--;
 	}
 }
+
+
 
 void	a_to_b(t_stack *a, t_stack *b, int num)
 {
@@ -91,41 +93,114 @@ void	a_to_b(t_stack *a, t_stack *b, int num)
 			return ;
 		node = node->prev;
 	}
-	if (num <= 1)
-		return ;
-	if (num == 2)
+	if (num <= 6)
 	{
-		sort_2arg(a, b);
+		if (a->size == 3)
+		{
+			sort_only3arg(a);
+			return ;
+		}
+		if (a->size == 5)
+		{
+			sort_only5arg(a, b);
+			return ;
+		}
+		if (a->size == 6)
+		{
+			sort_only6arg(a, b);
+			return ;
+		}
+		sort_2arg(a, b, num);
+		sort_3arg(a, b, num);
+		sort_4arg(a, b, num);
+		sort_5arg(a, b, num);
+		sort_6arg(a, b, num);
 		return ;
 	}
-	if (num == 3)
-	{
-		sort_3arg(a, b);
-		return ;
-	}
-	if (num == 4)
-	{
-		sort_4arg(a, b);
-		return ;
-	}
-	if (num == 5)
-	{
-		sort_5arg(a, b);
-		return ;
-	}
-	/*
-	if (num <= 5)
-	{
-		sort_2arg(a, b);
-		sort_3arg(a, b);
-		sort_5arg(a, b);
-		return ;
-	}
-	*/
 	ft_memset(numbers, 0, sizeof(t_num));
 	set_pivot_a(a, num, &numbers->pivot1, &numbers->pivot2);
 	sort_in_range_a(a, b, num, numbers);
 	rr_stack(a, b, numbers->ra_num, numbers->rb_num, &first);
+	a_to_b(a, b, numbers->ra_num);
+	b_to_a(a, b, numbers->rb_num, &first);
+	b_to_a(a, b, numbers->pb_num - numbers->rb_num, &first);
+}
+
+
+void	sort_in_range_a_first(t_stack *a, t_stack *b, int num, t_num *numbers)
+{	
+	while (num > 0)
+	{
+		if (a->top->index > numbers->pivot1)
+		{
+			ra(a);
+			numbers->ra_num++;
+		}
+		else
+		{
+			pb(b, a);
+			if (b->top->index < numbers->pivot2)
+			{
+				rb(b);
+				numbers->rb_num++;
+			}
+			numbers->pb_num++;
+		}
+		num--;
+	}
+}
+
+
+void	a_to_b_first(t_stack *a, t_stack *b, int num)
+{
+	static int	first = 0;
+	t_num		*numbers;
+	int			temp;
+	t_node		*node;
+
+	numbers = (t_num *)malloc(sizeof(t_num));
+	if (numbers == 0)
+		return ;
+	temp = num;
+	node = a->top;
+	while (temp > 1)
+	{
+		if (node->index - node->prev->index == -1)
+			temp--;
+		else
+			break ;
+		if (temp == 1)
+			return ;
+		node = node->prev;
+	}
+	if (num <= 6)
+	{
+		if (a->size == 3)
+		{
+			sort_only3arg(a);
+			return ;
+		}
+		if (a->size == 5)
+		{
+			sort_only5arg(a, b);
+			return ;
+		}
+		if (a->size == 6)
+		{
+			sort_only6arg(a, b);
+			return ;
+		}
+		sort_2arg(a, b, num);
+		sort_3arg(a, b, num);
+		sort_4arg(a, b, num);
+		sort_5arg(a, b, num);
+		sort_6arg(a, b, num);
+		return ;
+	}
+	ft_memset(numbers, 0, sizeof(t_num));
+	set_pivot_a(a, num, &numbers->pivot1, &numbers->pivot2);
+	sort_in_range_a_first(a, b, num, numbers);
+	numbers->rb_num = numbers->pb_num - numbers->rb_num;
 	a_to_b(a, b, numbers->ra_num);
 	b_to_a(a, b, numbers->rb_num, &first);
 	b_to_a(a, b, numbers->pb_num - numbers->rb_num, &first);

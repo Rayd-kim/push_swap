@@ -80,6 +80,8 @@ int	main(int argc, char *argv[])
 	t_stack	*b;
 	int		i;
 
+	if (argc == 1)
+		return (0);
 	a = newstack();
 	b = newstack();
 	if (null_check(a, b) == -1)
@@ -94,13 +96,8 @@ int	main(int argc, char *argv[])
 		return (0);
 	}
 	sort_arr(a);
-	if (a->size == 5)
-		sort_5arg(a, b);
-	else
+	a_to_b_first(a, b, a->size);
 	
-	a_to_b(a, b, a->size);
-	
-
 	/*
 	t_node	*temp;
 	t_stack	*a;
@@ -121,8 +118,9 @@ int	main(int argc, char *argv[])
 		return (0);
 	}
 	sort_arr(a);
-	a_to_b(a, b, a->size);
-
+	a_to_b_first(a, b, a->size);
+	
+	
 	temp = a->top;
 	while (i < a->size)
 	{
