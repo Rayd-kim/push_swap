@@ -58,8 +58,32 @@ void	sort_3arg(t_stack *a, t_stack *b)
 		sort_2arg(a, b);
 }
 
-void	sort_5arg(t_stack *a, t_stack *b)
+void	sort_4arg(t_stack *a, t_stack *b)
 {
+	int	i;
+	int	max;
+	int	min;
+	int	mid;
+
+	max_min(a, &max, &min, 4);
+	mid = (max + min) / 2;
+	i = 0;
+	while (++i < 5)
+	{
+		if (a->top->index <= mid)
+			pb(b, a);
+		else
+			ra(a);
+	}
+	rra(a);
+	rra(a);
+	sort_2arg(a, b);
+	pa(a, b);
+	pa(a, b);
+}
+
+void	sort_5arg(t_stack *a, t_stack *b)
+{	
 	int	i;
 	int	max;
 	int	min;
@@ -75,9 +99,10 @@ void	sort_5arg(t_stack *a, t_stack *b)
 		else
 			ra(a);
 	}
+	rra(a);
+	rra(a);
+	rra(a);
 	sort_3arg(a, b);
-	if (b->top->index < b->top->prev->index)
-		sb(b);
 	pa(a, b);
 	pa(a, b);
 }

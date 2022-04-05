@@ -76,7 +76,6 @@ static void	sort_arr(t_stack *a)
 
 int	main(int argc, char *argv[])
 {
-	/*
 	t_stack	*a;
 	t_stack	*b;
 	int		i;
@@ -100,7 +99,9 @@ int	main(int argc, char *argv[])
 	else
 	
 	a_to_b(a, b, a->size);
-	*/
+	
+
+	/*
 	t_node	*temp;
 	t_stack	*a;
 	t_stack	*b;
@@ -130,7 +131,7 @@ int	main(int argc, char *argv[])
 		temp = temp->prev;
 		i++;
 	}
-	/*
+	
 	i = 0;
 	temp = b->top;
 	while (i < b->size)

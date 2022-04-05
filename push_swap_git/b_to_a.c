@@ -60,13 +60,15 @@ void	sort_in_range_b(t_stack *a, t_stack *b, int num, t_num *numbers)
 	}
 }
 
-void	b_to_a(t_stack *a, t_stack *b, int num)
+void	b_to_a(t_stack *a, t_stack *b, int num, int *first)
 {
 	t_num	*numbers;
 
+	*first = *first + 1;
 	numbers = (t_num *)malloc(sizeof(t_num));
 	if (numbers == 0)
 		return ;
+	/*
 	if (num < 1)
 		return ;
 	if (num == 1)
@@ -86,6 +88,21 @@ void	b_to_a(t_stack *a, t_stack *b, int num)
 		sort_3arg_b(a, b);
 		return ;
 	}
+	*/
+	if (num <= 3)
+	{
+		if (num == 1)
+			pa(a, b);
+		else if (num == 2)
+		{
+			sort_2arg(a, b);
+			pa(a, b);
+			pa(a, b);
+		}
+		else if (num == 3)
+			sort_3arg_b(a, b);
+		return ;
+	}
 	ft_memset(numbers, 0, sizeof(t_num));
 	set_pivot_b(b, num, &numbers->pivot1, &numbers->pivot2);
 	sort_in_range_b(a, b, num, numbers);
@@ -93,5 +110,5 @@ void	b_to_a(t_stack *a, t_stack *b, int num)
 	a_to_b(a, b, numbers->pa_num - numbers->ra_num);
 	rra_stack(a, numbers->ra_num);
 	a_to_b(a, b, numbers->ra_num);
-	b_to_a(a, b, numbers->rb_num);
+	b_to_a(a, b, numbers->rb_num, first);
 }
