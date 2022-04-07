@@ -45,10 +45,6 @@ void	sort_only3arg(t_stack *a);;
 void	sort_only5arg(t_stack *a, t_stack *b);
 void	sort_only3arg_b(t_stack *a, t_stack *b);
 void	sort_only5arg_b(t_stack *a, t_stack *b);
-void	sort_only6arg(t_stack *a, t_stack *b);
-void	sort_only6arg_b(t_stack *a, t_stack *b);
-void	sort_6arg(t_stack *a, t_stack *b, int num);
-void	sort_6arg_b(t_stack *a, t_stack *b, int num);
 
 void	a_to_b(t_stack *a, t_stack *b, int num);
 void	max_min(t_stack *stack, int *max, int *min, int num);

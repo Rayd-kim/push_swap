@@ -20,7 +20,10 @@ void	ss(t_stack *a, t_stack *b)
 	int	temp;
 
 	if (a->size < 2)
+	{
+		sb(b);
 		return ;
+	}
 	temp = a->top->value;
 	a->top->value = a->top->prev->value;
 	a->top->prev->value = temp;
@@ -28,7 +31,10 @@ void	ss(t_stack *a, t_stack *b)
 	a->top->index = a->top->prev->index;
 	a->top->prev->index = temp;
 	if (b->size < 2)
+	{
+		write (1, "sa\n", 3);
 		return ;
+	}
 	temp = b->top->value;
 	b->top->value = b->top->prev->value;
 	b->top->prev->value = temp;
@@ -82,7 +88,10 @@ void	rr(t_stack *a, t_stack *b)
 	t_node	*temp;
 
 	if (a->size < 2)
+	{
+		rb(b);
 		return ;
+	}
 	temp = a->top;
 	a->bottom->prev = a->top;
 	a->top->prev->next = NULL;
@@ -91,7 +100,10 @@ void	rr(t_stack *a, t_stack *b)
 	temp->prev = NULL;
 	a->bottom = temp;
 	if (b->size < 2)
+	{
+		write (1, "ra\n", 3);
 		return ;
+	}
 	temp = b->top;
 	b->bottom->prev = b->top;
 	b->top->prev->next = NULL;

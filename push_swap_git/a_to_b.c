@@ -58,18 +58,23 @@ void	sort_in_range_a(t_stack *a, t_stack *b, int num, t_num *numbers)
 		else
 		{
 			pb(b, a);
-			if (b->top->index > numbers->pivot2)
+			numbers->pb_num++;
+			if (a->top->index > numbers->pivot1 && b->top->index > numbers->pivot2 && num > 1)
+			{
+				rr(a, b);
+				numbers->ra_num++;
+				numbers->rb_num++;
+				num--;
+			}
+			else if (b->top->index > numbers->pivot2)
 			{
 				rb(b);
 				numbers->rb_num++;
 			}
-			numbers->pb_num++;
 		}
 		num--;
 	}
 }
-
-
 
 void	a_to_b(t_stack *a, t_stack *b, int num)
 {
@@ -93,7 +98,7 @@ void	a_to_b(t_stack *a, t_stack *b, int num)
 			return ;
 		node = node->prev;
 	}
-	if (num <= 6)
+	if (num <= 5)
 	{
 		if (a->size == 3)
 		{
@@ -105,16 +110,10 @@ void	a_to_b(t_stack *a, t_stack *b, int num)
 			sort_only5arg(a, b);
 			return ;
 		}
-		if (a->size == 6)
-		{
-			sort_only6arg(a, b);
-			return ;
-		}
 		sort_2arg(a, b, num);
 		sort_3arg(a, b, num);
 		sort_4arg(a, b, num);
 		sort_5arg(a, b, num);
-		sort_6arg(a, b, num);
 		return ;
 	}
 	ft_memset(numbers, 0, sizeof(t_num));
@@ -139,7 +138,7 @@ void	sort_in_range_a_first(t_stack *a, t_stack *b, int num, t_num *numbers)
 		else
 		{
 			pb(b, a);
-			if (b->top->index < numbers->pivot2)
+			if (b->top->index <= numbers->pivot2)
 			{
 				rb(b);
 				numbers->rb_num++;
@@ -173,7 +172,7 @@ void	a_to_b_first(t_stack *a, t_stack *b, int num)
 			return ;
 		node = node->prev;
 	}
-	if (num <= 6)
+	if (num <= 5)
 	{
 		if (a->size == 3)
 		{
@@ -185,16 +184,10 @@ void	a_to_b_first(t_stack *a, t_stack *b, int num)
 			sort_only5arg(a, b);
 			return ;
 		}
-		if (a->size == 6)
-		{
-			sort_only6arg(a, b);
-			return ;
-		}
 		sort_2arg(a, b, num);
 		sort_3arg(a, b, num);
 		sort_4arg(a, b, num);
 		sort_5arg(a, b, num);
-		sort_6arg(a, b, num);
 		return ;
 	}
 	ft_memset(numbers, 0, sizeof(t_num));

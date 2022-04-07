@@ -45,7 +45,14 @@ void	sort_in_range_b(t_stack *a, t_stack *b, int num, t_num *numbers)
 		{
 			pa(a, b);
 			numbers->pa_num++;
-			if (a->top->index < numbers->pivot2)
+			if (b->top->index <= numbers->pivot1 && a->top->index < numbers->pivot2 && num > 1)
+			{
+				rr(a, b);
+				numbers->ra_num++;
+				numbers->rb_num++;
+				num--;
+			}
+			else if (a->top->index < numbers->pivot2)
 			{
 				ra(a);
 				numbers->ra_num++;
@@ -89,7 +96,7 @@ void	b_to_a(t_stack *a, t_stack *b, int num, int *first)
 		}
 		node = node->prev;
 	}
-	if (num <= 6)
+	if (num <= 5)
 	{
 		if (num == 1)
 			pa(a, b);
@@ -109,10 +116,6 @@ void	b_to_a(t_stack *a, t_stack *b, int num, int *first)
 			sort_only5arg_b(a, b);
 		else if (num == 5)
 			sort_5arg_b(a, b, num);
-		else if (num == 6 && b->size == 6)
-			sort_only6arg_b(a, b);
-		else if (num == 6)
-			sort_6arg_b(a, b, num);
 		return ;
 	}
 	ft_memset(numbers, 0, sizeof(t_num));

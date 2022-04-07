@@ -75,7 +75,10 @@ void	rrr(t_stack *a, t_stack *b)
 	t_node	*temp;
 
 	if (a->size < 2)
+	{
+		rrb(b);
 		return ;
+	}
 	temp = a->bottom;
 	a->bottom->next->prev = NULL;
 	a->bottom->prev = a->top;
@@ -84,7 +87,10 @@ void	rrr(t_stack *a, t_stack *b)
 	temp->next = NULL;
 	a->top = temp;
 	if (b->size < 2)
+	{
+		write (1, "rra\n", 4);
 		return ;
+	}
 	temp = b->bottom;
 	b->bottom->next->prev = NULL;
 	b->bottom->prev = b->top;
