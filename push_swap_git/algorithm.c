@@ -12,10 +12,20 @@
 
 #include "push_swap.h"
 
-void	quicksort(int *arr, int i_f, int i_l)
+static void	quicksort2(int *arr, int *i_f, int *i_l)
+{
+	int	temp;
+
+	temp = arr[*i_l];
+	arr[*i_l] = arr[*i_f];
+	arr[*i_f] = temp;
+	*i_f = *i_f + 1;
+	*i_l = *i_l - 1;
+}
+
+static void	quicksort(int *arr, int i_f, int i_l)
 {
 	int	pivot;
-	int	temp;
 	int	left;
 	int	right;
 
@@ -29,13 +39,7 @@ void	quicksort(int *arr, int i_f, int i_l)
 		while (arr[i_l] > pivot)
 			i_l--;
 		if (i_f <= i_l)
-		{
-			temp = arr[i_l];
-			arr[i_l] = arr[i_f];
-			arr[i_f] = temp;
-			i_f++;
-			i_l--;
-		}
+			quicksort2(arr, &i_f, &i_l);
 	}
 	if (i_f < right)
 		quicksort(arr, i_f, right);
@@ -52,12 +56,11 @@ static void	sort_arr(t_stack *a)
 	arr = (int *)malloc(sizeof(a->size));
 	if (arr == 0)
 		return ;
-	i = 0;
+	i = -1;
 	temp = a->bottom;
 	while (temp != NULL)
 	{
-		arr[i] = temp->value;
-		i++;
+		arr[++i] = temp->value;
 		temp = temp->next;
 	}
 	quicksort(arr, 0, a->size - 1);
@@ -97,20 +100,5 @@ int	main(int argc, char *argv[])
 	}
 	sort_arr(a);
 	a_to_b_first(a, b, a->size);
-	
-	/*
-
-	t_node *temp = a->top;
-	t_node *temp2;
-	while (temp != NULL)
-	{
-		temp2 = temp;
-		temp = temp->prev;
-		free(temp2);
-	}
-	free(a);
-	free(b);
-	*/
-	//system("leaks push_swap");
 	return (0);
 }
