@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-static int	result_value(const char *str, int index, int sign)
+static long long int	result_value(const char *str, int index, int sign)
 {
 	unsigned long long int	result;
 
@@ -28,12 +28,12 @@ static int	result_value(const char *str, int index, int sign)
 		return (result * sign);
 }
 
-int	ft_atoi(const char *str)
+long long int	ft_atoi(const char *str)
 {
-	int	i;
-	int	sign;
-	int	result;
-	int	pm_num;
+	int				i;
+	int				sign;
+	long long int	result;
+	int				pm_num;
 
 	i = 0;
 	sign = 1;
@@ -48,7 +48,7 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	if (pm_num > 1)
-		return (0);
+		return (2147483648);
 	result = result_value(str, i, sign);
 	return (result);
 }

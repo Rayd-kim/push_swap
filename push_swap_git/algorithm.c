@@ -11,23 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
-
-static void	error_free(t_stack *a, t_stack *b)
-{
-	free(a);
-	free(b);
-}
-
-static int	null_check(t_stack *a, t_stack *b)
-{
-	if (a == NULL || b == NULL)
-	{
-		error_free(a, b);
-		return (-1);
-	}
-	return (0);
-}
 
 void	quicksort(int *arr, int i_f, int i_l)
 {
@@ -87,6 +70,7 @@ static void	sort_arr(t_stack *a)
 		temp->index = i;
 		temp = temp->next;
 	}
+	free(arr);
 }
 
 int	main(int argc, char *argv[])
@@ -105,12 +89,28 @@ int	main(int argc, char *argv[])
 		return (0);
 	}
 	i = 0;
-	if (push_swap(argc, argv, a, b) == -1)
+	if (push_swap(argc, argv, a) == -1)
 	{
 		write (1, "Error\n", 6);
+		error_free(a, b);
 		return (0);
 	}
 	sort_arr(a);
 	a_to_b_first(a, b, a->size);
+	
+	/*
+
+	t_node *temp = a->top;
+	t_node *temp2;
+	while (temp != NULL)
+	{
+		temp2 = temp;
+		temp = temp->prev;
+		free(temp2);
+	}
+	free(a);
+	free(b);
+	*/
+	//system("leaks push_swap");
 	return (0);
 }
