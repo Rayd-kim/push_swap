@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   b_to_a.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: youskim <youskim@student.42seoul.k>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/07 14:43:10 by youskim           #+#    #+#             */
+/*   Updated: 2022/04/07 14:43:12 by youskim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 typedef struct s_num
@@ -84,7 +96,7 @@ void	b_to_a(t_stack *a, t_stack *b, int num, int *first)
 		if (node->index - node->prev->index == 1)
 			temp--;
 		else
-			break;
+			break ;
 		if (temp == 1)
 		{
 			while (num > 0)
@@ -122,8 +134,8 @@ void	b_to_a(t_stack *a, t_stack *b, int num, int *first)
 	set_pivot_b(b, num, &numbers->pivot1, &numbers->pivot2);
 	sort_in_range_b(a, b, num, numbers);
 	rrb_stack(b, numbers->rb_num);
-	a_to_b(a, b, numbers->pa_num - numbers->ra_num);
+	a_to_b(a, b, numbers->pa_num - numbers->ra_num, first);
 	rra_stack(a, numbers->ra_num);
-	a_to_b(a, b, numbers->ra_num);
+	a_to_b(a, b, numbers->ra_num, first);
 	b_to_a(a, b, numbers->rb_num, first);
 }

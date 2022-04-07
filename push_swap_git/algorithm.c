@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   algorithm.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: youskim <youskim@student.42seoul.k>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/07 14:43:05 by youskim           #+#    #+#             */
+/*   Updated: 2022/04/07 14:43:07 by youskim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 #include <stdio.h>
 
@@ -17,43 +29,46 @@ static int	null_check(t_stack *a, t_stack *b)
 	return (0);
 }
 
-void    quicksort(int *arr, int i_f, int i_l)
+void	quicksort(int *arr, int i_f, int i_l)
 {
-    int pivot;
-    int temp;
-    int left;
-    int right;
+	int	pivot;
+	int	temp;
+	int	left;
+	int	right;
 
-    left = i_f;
-    right = i_l;
-    pivot = arr[(i_f + i_l) / 2];
-    while (i_f <= i_l)
-    {
-        while (arr[i_f] < pivot)
-            i_f++;
-        while (arr[i_l] > pivot)
-            i_l--;
-        if (i_f <= i_l)
-        {
-            temp = arr[i_l];
-            arr[i_l] = arr[i_f];
-            arr[i_f] = temp;
-            i_f++;
-            i_l--;
-        }
-    }
-    if (i_f < right)
-        quicksort(arr, i_f, right);
-    if (i_l > left)
-        quicksort(arr, left, i_l);
+	left = i_f;
+	right = i_l;
+	pivot = arr[(i_f + i_l) / 2];
+	while (i_f <= i_l)
+	{
+		while (arr[i_f] < pivot)
+			i_f++;
+		while (arr[i_l] > pivot)
+			i_l--;
+		if (i_f <= i_l)
+		{
+			temp = arr[i_l];
+			arr[i_l] = arr[i_f];
+			arr[i_f] = temp;
+			i_f++;
+			i_l--;
+		}
+	}
+	if (i_f < right)
+		quicksort(arr, i_f, right);
+	if (i_l > left)
+		quicksort(arr, left, i_l);
 }
 
 static void	sort_arr(t_stack *a)
 {
-	int	arr[a->size];
+	int		*arr;
 	t_node	*temp;
-	int	i;
+	int		i;
 
+	arr = (int *)malloc(sizeof(a->size));
+	if (arr == 0)
+		return ;
 	i = 0;
 	temp = a->bottom;
 	while (temp != NULL)
@@ -97,48 +112,5 @@ int	main(int argc, char *argv[])
 	}
 	sort_arr(a);
 	a_to_b_first(a, b, a->size);
-	
-	/*
-	t_node	*temp;
-	t_stack	*a;
-	t_stack	*b;
-	int		i;
-
-	a = newstack();
-	b = newstack();
-	if (null_check(a, b) == -1)
-	{
-		write (1, "Error\n", 6);
-		return (0);
-	}
-	i = 0;
-	if (push_swap(argc, argv, a, b) == -1)
-	{
-		write (1, "Error\n", 6);
-		return (0);
-	}
-	sort_arr(a);
-	a_to_b_first(a, b, a->size);
-	
-	
-	temp = a->top;
-	while (i < a->size)
-	{
-		printf("stack a %d ", temp->value);
-		printf("%d\n", temp->index);
-		temp = temp->prev;
-		i++;
-	}
-	
-	i = 0;
-	temp = b->top;
-	while (i < b->size)
-	{
-		printf("stack b %d ", temp->value);
-		printf("%d\n", temp->index);
-		temp = temp->prev;
-		i++;
-	}
-	*/
 	return (0);
 }

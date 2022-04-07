@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   a_to_b.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: youskim <youskim@student.42seoul.k>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/07 14:42:57 by youskim           #+#    #+#             */
+/*   Updated: 2022/04/07 14:43:02 by youskim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
+
 typedef struct s_num
 {
 	int	pb_num;
@@ -8,7 +21,7 @@ typedef struct s_num
 	int	pivot2;
 }		t_num;
 
-static void    rr_stack(t_stack *a, t_stack *b, int a_num, int b_num, int *first)
+static void	rr_stack(t_stack *a, t_stack *b, int a_num, int b_num, int *first)
 {
 	int	same;
 	int	temp;
@@ -76,9 +89,8 @@ void	sort_in_range_a(t_stack *a, t_stack *b, int num, t_num *numbers)
 	}
 }
 
-void	a_to_b(t_stack *a, t_stack *b, int num)
+void	a_to_b(t_stack *a, t_stack *b, int num, int *first)
 {
-	static int	first = 0;
 	t_num		*numbers;
 	int			temp;
 	t_node		*node;
@@ -119,12 +131,11 @@ void	a_to_b(t_stack *a, t_stack *b, int num)
 	ft_memset(numbers, 0, sizeof(t_num));
 	set_pivot_a(a, num, &numbers->pivot1, &numbers->pivot2);
 	sort_in_range_a(a, b, num, numbers);
-	rr_stack(a, b, numbers->ra_num, numbers->rb_num, &first);
-	a_to_b(a, b, numbers->ra_num);
-	b_to_a(a, b, numbers->rb_num, &first);
-	b_to_a(a, b, numbers->pb_num - numbers->rb_num, &first);
+	rr_stack(a, b, numbers->ra_num, numbers->rb_num, first);
+	a_to_b(a, b, numbers->ra_num, first);
+	b_to_a(a, b, numbers->rb_num, first);
+	b_to_a(a, b, numbers->pb_num - numbers->rb_num, first);
 }
-
 
 void	sort_in_range_a_first(t_stack *a, t_stack *b, int num, t_num *numbers)
 {	
@@ -138,17 +149,23 @@ void	sort_in_range_a_first(t_stack *a, t_stack *b, int num, t_num *numbers)
 		else
 		{
 			pb(b, a);
-			if (b->top->index <= numbers->pivot2)
+			numbers->pb_num++;
+			if (a->top->index > numbers->pivot1 && b->top->index <= numbers->pivot2 && num > 1)
+			{
+				rr(a, b);
+				numbers->ra_num++;
+				numbers->rb_num++;
+				num--;
+			}
+			else if (b->top->index <= numbers->pivot2)
 			{
 				rb(b);
 				numbers->rb_num++;
 			}
-			numbers->pb_num++;
 		}
 		num--;
 	}
 }
-
 
 void	a_to_b_first(t_stack *a, t_stack *b, int num)
 {
@@ -193,8 +210,7 @@ void	a_to_b_first(t_stack *a, t_stack *b, int num)
 	ft_memset(numbers, 0, sizeof(t_num));
 	set_pivot_a(a, num, &numbers->pivot1, &numbers->pivot2);
 	sort_in_range_a_first(a, b, num, numbers);
-	numbers->rb_num = numbers->pb_num - numbers->rb_num;
-	a_to_b(a, b, numbers->ra_num);
-	b_to_a(a, b, numbers->rb_num, &first);
+	a_to_b(a, b, numbers->ra_num, &first);
 	b_to_a(a, b, numbers->pb_num - numbers->rb_num, &first);
+	b_to_a(a, b, numbers->rb_num, &first);
 }

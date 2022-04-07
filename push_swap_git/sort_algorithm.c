@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_algorithm.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: youskim <youskim@student.42seoul.k>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/07 14:44:58 by youskim           #+#    #+#             */
+/*   Updated: 2022/04/07 14:45:02 by youskim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	sort_only3arg(t_stack *a)
@@ -11,7 +23,7 @@ void	sort_only3arg(t_stack *a)
 		ra(a);
 		if (a->top->index != min)
 			sa(a);
-		return;
+		return ;
 	}
 	if (a->top->index == min && a->bottom->index != max)
 	{
@@ -44,7 +56,7 @@ void	sort_only5arg(t_stack *a, t_stack *b)
 		if (a->top->index < mid)
 			pb(b, a);
 		else
-			ra(a);	
+			ra(a);
 	}
 	sort_2arg(a, b, 2);
 	sort_only3arg(a);
@@ -75,7 +87,7 @@ void	sort_only3arg_b(t_stack *a, t_stack *b)
 		else
 			rrb(b);
 	}
-	if (b->top->index == max && b->bottom->index !=min)
+	if (b->top->index == max && b->bottom->index != min)
 	{
 		sb(b);
 		rb(b);
@@ -129,9 +141,9 @@ void	sort_2arg(t_stack *a, t_stack *b, int num)
 
 void	sort_3arg_b(t_stack *a, t_stack *b, int num)
 {
-	int min;
-	int max;
-	
+	int	min;
+	int	max;
+
 	if (num != 3)
 		return ;
 	max_min(b, &max, &min, 3);
@@ -244,7 +256,7 @@ void	sort_4arg_b(t_stack *a, t_stack *b, int num)
 	rrb(b);
 	rrb(b);
 	sort_2arg(a, b, num - 2);
-	pa(a , b);
+	pa(a, b);
 	pa(a, b);
 }
 

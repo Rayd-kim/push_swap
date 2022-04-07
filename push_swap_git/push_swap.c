@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: youskim <youskim@student.42seoul.k>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/07 14:45:50 by youskim           #+#    #+#             */
+/*   Updated: 2022/04/07 14:45:52 by youskim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	error_free(t_stack *a, t_stack *b)
@@ -14,7 +26,7 @@ void	set_first_stack(char *str, t_stack *stack, int *index)
 	*index = *index + 1;
 }
 
-int	error_check(int	argc, char *argv[])
+int	error_check(int argc, char *argv[])
 {
 	int	i;
 	int	k;
@@ -27,7 +39,8 @@ int	error_check(int	argc, char *argv[])
 		{
 			if (argv[i][k] >= '0' && argv[i][k] <= '9')
 				k++;
-			else if (argv[i][k] == '+' || argv[i][k] == '-' || argv[i][k] == ' ')
+			else if (argv[i][k] == '+' || argv[i][k] == '-' \
+				|| argv[i][k] == ' ')
 				k++;
 			else
 				return (-1);
@@ -73,7 +86,6 @@ int	check_split(char **split)
 	return (0);
 }
 
-
 int	push_swap(int argc, char *argv[], t_stack *a, t_stack *b)
 {
 	int			i;
@@ -98,7 +110,7 @@ int	push_swap(int argc, char *argv[], t_stack *a, t_stack *b)
 				a->bottom = lst_stack(split[i], a, &index);
 			if (a->bottom == NULL)
 			{
-				error_free(a, b);
+				error_free (a, b);
 				return (-1);
 			}
 			i++;

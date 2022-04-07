@@ -13,7 +13,8 @@
 NAME = push_swap
 CC = gcc
 W = -Wall -Wextra -Werror
-FILE = push_swap.c lst_first.c lst_stack.c algorithm.c ft_atoi.c newstack.c operation_a.c operation_b.c ft_split.c ft_strlen.c ft_memset.c max_min.c a_to_b.c b_to_a.c sort_algorithm.c
+FILE = push_swap.c lst_first.c lst_stack.c algorithm.c ft_atoi.c newstack.c operation_a.c \
+	operation_b.c ft_split.c ft_strlen.c ft_memset.c max_min.c a_to_b.c b_to_a.c sort_algorithm.c
 
 all : $(NAME)
 
