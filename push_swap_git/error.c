@@ -14,7 +14,24 @@
 
 void	error_free(t_stack *a, t_stack *b)
 {
+	t_node	*temp;
+	t_node	*free_temp;
+
+	temp = a->top;
+	while (temp != NULL)
+	{
+		free_temp = temp;
+		temp = temp->prev;
+		free(free_temp);
+	}
 	free(a);
+	temp = b->top;
+	while (temp != NULL)
+	{
+		free_temp = temp;
+		temp = temp->prev;
+		free(free_temp);
+	}
 	free(b);
 }
 

@@ -22,20 +22,22 @@ void	set_pivot_b(t_stack *b, int num, int *pivot1, int *pivot2)
 	*pivot2 = (max + *pivot1) / 2;
 }
 
-void	rra_stack(t_stack *a, int ra_num)
+void	rrab(t_stack *a, t_stack *b, t_num_b *numbers, int *first)
 {
-	while (ra_num > 0)
-	{
-		rra(a);
-		ra_num--;
-	}
-}
+	int	ra_temp;
+	int	rb_temp;
 
-void	rrb_stack(t_stack *b, int rb_num)
-{
-	while (rb_num > 0)
+	ra_temp = numbers->ra_num;
+	rb_temp = numbers->rb_num;
+	while (rb_temp > 0)
 	{
 		rrb(b);
-		rb_num--;
+		rb_temp--;
+	}
+	a_to_b(a, b, numbers->pa_num - numbers->ra_num, first);
+	while (ra_temp > 0)
+	{
+		rra(a);
+		ra_temp--;
 	}
 }

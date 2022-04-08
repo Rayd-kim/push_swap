@@ -103,9 +103,6 @@ void	b_to_a(t_stack *a, t_stack *b, int num, int *first)
 	t_num_b	*numbers;
 
 	*first = *first + 1;
-	numbers = (t_num_b *)malloc(sizeof(t_num_b));
-	if (numbers == 0)
-		return ;
 	if (check_conti(a, b, num) == -1)
 		return ;
 	if (num <= 5)
@@ -113,12 +110,18 @@ void	b_to_a(t_stack *a, t_stack *b, int num, int *first)
 		check_num(a, b, num);
 		return ;
 	}
+	numbers = (t_num_b *)malloc(sizeof(t_num_b));
+	if (numbers == 0)
+	{
+		*first = -1;
+		error_free(a, b);
+		return ;
+	}
 	ft_memset(numbers, 0, sizeof(t_num_b));
 	set_pivot_b(b, num, &numbers->pivot1, &numbers->pivot2);
 	sort_in_range_b(a, b, num, numbers);
-	rrb_stack(b, numbers->rb_num);
-	a_to_b(a, b, numbers->pa_num - numbers->ra_num, first);
-	rra_stack(a, numbers->ra_num);
+	rrab(a, b, numbers, first);
 	a_to_b(a, b, numbers->ra_num, first);
 	b_to_a(a, b, numbers->rb_num, first);
+	free(numbers);
 }

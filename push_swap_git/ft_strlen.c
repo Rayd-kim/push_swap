@@ -12,12 +12,14 @@
 
 #include "push_swap.h"
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen(const char *s1)
 {
-	size_t	i;
+	int	length;
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	if (s1 == NULL)
+		return (0);
+	length = 0;
+	while (s1[length] != '\0')
+		length++;
+	return (length);
 }

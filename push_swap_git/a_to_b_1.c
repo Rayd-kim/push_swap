@@ -91,16 +91,18 @@ void	a_to_b(t_stack *a, t_stack *b, int num, int *first)
 {
 	t_num_a		*numbers;
 
-	numbers = (t_num_a *)malloc(sizeof(t_num_a));
-	if (numbers == 0)
-		return ;
-	if (numbers == 0)
-		return ;
 	if (check_conti(a, num) == -1)
 		return ;
 	if (num <= 5)
 	{
 		check_num(a, b, num);
+		return ;
+	}
+	numbers = (t_num_a *)malloc(sizeof(t_num_a));
+	if (numbers == 0)
+	{
+		*first = -1;
+		error_free(a, b);
 		return ;
 	}
 	ft_memset(numbers, 0, sizeof(t_num_a));
@@ -110,4 +112,5 @@ void	a_to_b(t_stack *a, t_stack *b, int num, int *first)
 	a_to_b(a, b, numbers->ra_num, first);
 	b_to_a(a, b, numbers->rb_num, first);
 	b_to_a(a, b, numbers->pb_num - numbers->rb_num, first);
+	free(numbers);
 }

@@ -82,16 +82,15 @@ void			max_min(t_stack *stack, int *max, int *min, int num);
 
 void			set_pivot_a(t_stack *a, int num, int *pivot1, int *pivot2);
 void			set_pivot_b(t_stack *b, int num, int *pivot1, int *pivot2);
-void			rra_stack(t_stack *a, int ra_num);
-void			rrb_stack(t_stack *b, int rb_num);
+void			rrab(t_stack *a, t_stack *b, t_num_b *numbers, int *first);
 void			rr_stack(t_stack *a, t_stack *b, t_num_a *numbers, int *first);
 
 void			*ft_memset(void *b, int c, size_t n);
 char			**ft_split(char const *s, char c);
-size_t			ft_strlen(const char *str);
+size_t			ft_strlen(const char *s1);
 
 void			error_free(t_stack *a, t_stack *b);
 int				null_check(t_stack *a, t_stack *b);
 
-void			a_to_b_first(t_stack *a, t_stack *b, int num);
+void			a_to_b_first(t_stack *a, t_stack *b, int num, int *first);
 #endif

@@ -53,7 +53,7 @@ static void	sort_arr(t_stack *a)
 	t_node	*temp;
 	int		i;
 
-	arr = (int *)malloc(sizeof(a->size));
+	arr = (int *)malloc(sizeof(int) * a->size);
 	if (arr == 0)
 		return ;
 	i = -1;
@@ -78,9 +78,9 @@ static void	sort_arr(t_stack *a)
 
 int	main(int argc, char *argv[])
 {
-	t_stack	*a;
-	t_stack	*b;
-	int		i;
+	t_stack		*a;
+	t_stack		*b;
+	static int	first = 0;
 
 	if (argc == 1)
 		return (0);
@@ -91,14 +91,18 @@ int	main(int argc, char *argv[])
 		write (1, "Error\n", 6);
 		return (0);
 	}
-	i = 0;
 	if (push_swap(argc, argv, a) == -1)
 	{
 		write (1, "Error\n", 6);
-		error_free(a, b);
+		system("leaks push_swap > leaks_result; cat leaks_result | grep leaked; rm -rf leaks_result");
+		//error_free(a, b);
 		return (0);
 	}
 	sort_arr(a);
-	a_to_b_first(a, b, a->size);
+	a_to_b_first(a, b, a->size, &first);
+	if (first < 0)
+		write (1, "Error\n", 6);
+	//error_free(a, b);
+	system("leaks push_swap > leaks_result; cat leaks_result | grep leaked; rm -rf leaks_result");
 	return (0);
 }

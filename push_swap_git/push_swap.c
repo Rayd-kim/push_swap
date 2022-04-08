@@ -98,7 +98,16 @@ int	push_swap(int argc, char *argv[], t_stack *a)
 	{
 		split = ft_split(argv[k], ' ');
 		if (check_split(split, a) == -1)
+		{
+			i = 0;
+			while (split[i] != NULL)
+			{
+				free(split[i]);
+				i++;
+			}
+			free(split);
 			return (-1);
+		}
 		i = -1;
 		while (split[++i] != NULL)
 		{
@@ -109,6 +118,13 @@ int	push_swap(int argc, char *argv[], t_stack *a)
 			if (a->bottom == NULL)
 				return (-1);
 		}
+		i = 0;
+		while (split[i] != NULL)
+		{
+			free(split[i]);
+			i++;
+		}
+		free(split);
 	}
 	return (0);
 }
