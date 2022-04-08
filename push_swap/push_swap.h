@@ -89,6 +89,8 @@ void			*ft_memset(void *b, int c, size_t n);
 char			**ft_split(char const *s, char c);
 size_t			ft_strlen(const char *s1);
 
+void			free_split(char **split);
+int				error_check(int argc, char *argv[]);
 void			error_free(t_stack *a, t_stack *b);
 int				null_check(t_stack *a, t_stack *b);
 

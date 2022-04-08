@@ -94,15 +94,13 @@ int	main(int argc, char *argv[])
 	if (push_swap(argc, argv, a) == -1)
 	{
 		write (1, "Error\n", 6);
-		system("leaks push_swap > leaks_result; cat leaks_result | grep leaked; rm -rf leaks_result");
-		//error_free(a, b);
+		error_free(a, b);
 		return (0);
 	}
 	sort_arr(a);
 	a_to_b_first(a, b, a->size, &first);
 	if (first < 0)
 		write (1, "Error\n", 6);
-	//error_free(a, b);
-	system("leaks push_swap > leaks_result; cat leaks_result | grep leaked; rm -rf leaks_result");
+	error_free(a, b);
 	return (0);
 }
