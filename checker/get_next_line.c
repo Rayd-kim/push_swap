@@ -6,7 +6,7 @@
 /*   By: youskim <youskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 22:56:11 by youskim           #+#    #+#             */
-/*   Updated: 2022/04/09 12:10:57 by youskim          ###   ########.fr       */
+/*   Updated: 2022/04/09 13:20:31 by youskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static char	*rd_zero(char **str_2, char **result_2, int *check, char **join)
 {
 	char		*return_value;
 
-	if (ft_strchr(*join, '\n') == 1)
+	if (gnl_strchr(*join, '\n') == 1)
 	{
 		return_value = str_cpy(*join);
 		free(*result_2);
@@ -101,7 +101,7 @@ char	*get_next_line(int fd)
 	join = str_join(result, str_set(str, fd, &rd_size));
 	while (rd_size > 0)
 	{
-		if (ft_strchr(join, '\n') == 1)
+		if (gnl_strchr(join, '\n') == 1)
 			return (rd_not_zero(&str, &result, &join));
 		free(result);
 		result = ft_strdup(&join);

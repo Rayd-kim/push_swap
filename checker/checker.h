@@ -6,7 +6,7 @@
 /*   By: youskim <youskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 12:06:46 by youskim           #+#    #+#             */
-/*   Updated: 2022/04/09 12:11:40 by youskim          ###   ########.fr       */
+/*   Updated: 2022/04/09 13:17:45 by youskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include "../libft/libft.h"
 
 typedef struct s_node
 {
@@ -47,7 +48,6 @@ long long int	ft_atoi_long(const char *str);
 
 t_node			*lst_first(char *str, int *index);
 t_stack			*newstack(void);
-char			**ft_split(char const *s, char c);
 t_node			*lst_stack(char *str, t_stack *a, int *index);
 
 int				push_swap(int argc, char *argv[], t_stack *a);
@@ -55,5 +55,5 @@ int				error_check(int argc, char *argv[]);
 void			free_split(char **split);
 int				null_check(t_stack *a, t_stack *b);
 void			error_free(t_stack *a, t_stack *b);
-size_t			ft_strlen(const char *s1);
+
 #endif

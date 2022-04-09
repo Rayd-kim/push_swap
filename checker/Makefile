@@ -6,7 +6,7 @@
 #    By: youskim <youskim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/28 15:06:10 by youskim           #+#    #+#              #
-#    Updated: 2022/04/09 12:47:25 by youskim          ###   ########.fr        #
+#    Updated: 2022/04/09 13:18:57 by youskim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,18 +17,18 @@ CC = gcc
 W = -Wall -Wextra -Werror
 
 FILE = main.c push_swap.c operation_a.c operation_b.c operation_ab.c ft_atoi_long.c \
-		ft_strlen.c lst_first.c newstack.c ft_split.c lst_stack.c error.c \
-		get_next_line_utils.c get_next_line.c
+		lst_first.c newstack.c lst_stack.c error.c get_next_line_utils.c get_next_line.c
 		
 OBJS = $(FILE:.c=.o)
 
 all : $(NAME)
 
-$(OBJS) : $(FILE)
-	$(CC) $(W) -c $(FILE)
-
 $(NAME) : $(OBJS)
-	$(CC) $(W) $(OBJS) -o $(NAME)
+	$(CC) $(W) $(OBJS) -L../libft -lft -o $(NAME)
+
+$(OBJS) : $(FILE)
+	@$(MAKE) -C ../libft all
+	$(CC) $(W) -c $(FILE)
 
 clean :
 	rm -rf $(OBJS)

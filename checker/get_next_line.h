@@ -6,7 +6,7 @@
 /*   By: youskim <youskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 22:57:29 by youskim           #+#    #+#             */
-/*   Updated: 2022/04/09 12:10:42 by youskim          ###   ########.fr       */
+/*   Updated: 2022/04/09 13:20:56 by youskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ int		null_strlen(char *s1);
 char	*str_cut(char *str);
 char	*str_join(char *s1, char *s2);
 char	*str_cpy(char *s1);
-int		ft_strchr(char *str, char c);
+int		gnl_strchr(char *str, char c);
 char	*get_next_line(int fd);
 #endif

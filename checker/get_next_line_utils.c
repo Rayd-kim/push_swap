@@ -6,7 +6,7 @@
 /*   By: youskim <youskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 15:50:42 by youskim           #+#    #+#             */
-/*   Updated: 2022/04/09 12:10:20 by youskim          ###   ########.fr       */
+/*   Updated: 2022/04/09 13:21:26 by youskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ char	*str_cpy(char *s1)
 	return (arr);
 }
 
-int	ft_strchr(char *str, char c)
+int	gnl_strchr(char *str, char c)
 {
 	int		i;
 
