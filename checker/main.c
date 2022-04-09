@@ -6,12 +6,12 @@
 /*   By: youskim <youskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 14:43:05 by youskim           #+#    #+#             */
-/*   Updated: 2022/04/09 12:14:20 by youskim          ###   ########.fr       */
+/*   Updated: 2022/04/09 12:48:10 by youskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
-#include "get_next_line/get_next_line.h"
+#include "get_next_line.h"
 
 static int	check_operation(char *str)
 {
