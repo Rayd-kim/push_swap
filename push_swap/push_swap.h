@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youskim <youskim@student.42seoul.k>        +#+  +:+       +#+        */
+/*   By: youskim <youskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 14:45:59 by youskim           #+#    #+#             */
-/*   Updated: 2022/04/07 16:17:28 by youskim          ###   ########.fr       */
+/*   Updated: 2022/04/09 11:50:55 by youskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_num_a
 t_stack			*newstack(void);
 t_node			*lst_first(char *str, int *index);
 t_node			*lst_stack(char *str, t_stack *a, int *index);
-long long int	ft_atoi(const char *str);
+long long int	ft_atoi_long(const char *str);
 int				push_swap(int argc, char *argv[], t_stack *a);
 
 void			sa(t_stack *a);

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   operation_ab.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youskim <youskim@student.42seoul.k>        +#+  +:+       +#+        */
+/*   By: youskim <youskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 16:22:42 by youskim           #+#    #+#             */
-/*   Updated: 2022/04/07 16:22:44 by youskim          ###   ########.fr       */
+/*   Updated: 2022/04/09 11:43:32 by youskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "checker.h"
 
 void	cheker_ss(t_stack *a, t_stack *b)
 {

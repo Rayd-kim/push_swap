@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_stack.c                                        :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youskim <youskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/07 14:43:39 by youskim           #+#    #+#             */
-/*   Updated: 2022/04/09 11:52:05 by youskim          ###   ########.fr       */
+/*   Created: 2021/11/27 15:06:44 by youskim           #+#    #+#             */
+/*   Updated: 2021/11/30 22:07:19 by youskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-t_node	*lst_stack(char *str, t_stack *a, int *index)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	t_node	*lst;
+	t_list	*temp;
 
-	lst = (t_node *)malloc(sizeof(t_node));
-	if (lst == 0)
-		return (NULL);
-	a->bottom->prev = lst;
-	lst->prev = NULL;
-	lst->next = a->bottom;
-	lst->value = ft_atoi_long(str);
-	lst->index = *index;
-	a->size++;
-	*index = *index + 1;
-	return (lst);
+	while (lst != NULL)
+	{
+		temp = lst->next;
+		f(lst->content);
+		lst = temp;
+	}
 }

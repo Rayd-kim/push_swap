@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_stack.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youskim <youskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/07 14:43:39 by youskim           #+#    #+#             */
-/*   Updated: 2022/04/09 11:52:05 by youskim          ###   ########.fr       */
+/*   Created: 2021/11/19 20:33:01 by youskim           #+#    #+#             */
+/*   Updated: 2021/11/19 20:46:53 by youskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include <string.h>
 
-t_node	*lst_stack(char *str, t_stack *a, int *index)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	t_node	*lst;
+	unsigned char	*a1;
+	unsigned char	*a2;
+	size_t			i;
 
-	lst = (t_node *)malloc(sizeof(t_node));
-	if (lst == 0)
-		return (NULL);
-	a->bottom->prev = lst;
-	lst->prev = NULL;
-	lst->next = a->bottom;
-	lst->value = ft_atoi_long(str);
-	lst->index = *index;
-	a->size++;
-	*index = *index + 1;
-	return (lst);
+	a1 = (unsigned char *)s1;
+	a2 = (unsigned char *)s2;
+	i = 0;
+	while (i < n)
+	{
+		if (a1[i] != a2[i])
+			return (a1[i] - a2[i]);
+		i++;
+	}
+	return (0);
 }

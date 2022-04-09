@@ -6,7 +6,7 @@
 /*   By: youskim <youskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 22:56:11 by youskim           #+#    #+#             */
-/*   Updated: 2022/01/22 16:08:34 by youskim          ###   ########.fr       */
+/*   Updated: 2022/04/09 12:10:57 by youskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char	*ft_strdup(char **join)
 	char	*return_val;
 
 	i = 0;
-	return_val = (char *)malloc(sizeof(char) * (ft_strlen(*join) + 1));
+	return_val = (char *)malloc(sizeof(char) * (null_strlen(*join) + 1));
 	if (return_val == 0)
 		return (NULL);
 	while (*(*join + i) != '\0')
@@ -49,7 +49,7 @@ static char	*rd_zero(char **str_2, char **result_2, int *check, char **join)
 		*check = 1;
 		free(*str_2);
 		free(*result_2);
-		if (ft_strlen(*join) == 0)
+		if (null_strlen(*join) == 0)
 		{
 			free(*join);
 			return (NULL);

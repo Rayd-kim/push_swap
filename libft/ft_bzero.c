@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_stack.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youskim <youskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/07 14:43:39 by youskim           #+#    #+#             */
-/*   Updated: 2022/04/09 11:52:05 by youskim          ###   ########.fr       */
+/*   Created: 2021/11/17 14:43:46 by youskim           #+#    #+#             */
+/*   Updated: 2021/11/29 18:46:05 by youskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-t_node	*lst_stack(char *str, t_stack *a, int *index)
-{
-	t_node	*lst;
+void	ft_bzero(void *s, size_t n)
+{	
+	size_t			i;
+	unsigned char	*str;
 
-	lst = (t_node *)malloc(sizeof(t_node));
-	if (lst == 0)
-		return (NULL);
-	a->bottom->prev = lst;
-	lst->prev = NULL;
-	lst->next = a->bottom;
-	lst->value = ft_atoi_long(str);
-	lst->index = *index;
-	a->size++;
-	*index = *index + 1;
-	return (lst);
+	i = 0;
+	str = (unsigned char *)s;
+	while (i < n)
+	{
+		str[i] = 0;
+		i++;
+	}
 }

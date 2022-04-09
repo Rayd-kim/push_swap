@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_stack.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youskim <youskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/07 14:43:39 by youskim           #+#    #+#             */
-/*   Updated: 2022/04/09 11:52:05 by youskim          ###   ########.fr       */
+/*   Created: 2021/11/17 15:42:59 by youskim           #+#    #+#             */
+/*   Updated: 2021/11/21 17:30:14 by youskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include <stdlib.h>
 
-t_node	*lst_stack(char *str, t_stack *a, int *index)
+char	*ft_strdup(const char *str)
 {
-	t_node	*lst;
+	int		len;
+	char	*arr;
 
-	lst = (t_node *)malloc(sizeof(t_node));
-	if (lst == 0)
+	len = 0;
+	while (str[len])
+		len++;
+	arr = (char *)malloc(sizeof(char) * (len + 1));
+	if (arr == 0)
 		return (NULL);
-	a->bottom->prev = lst;
-	lst->prev = NULL;
-	lst->next = a->bottom;
-	lst->value = ft_atoi_long(str);
-	lst->index = *index;
-	a->size++;
-	*index = *index + 1;
-	return (lst);
+	len = 0;
+	while (str[len])
+	{
+		arr[len] = str[len];
+		len++;
+	}
+	arr[len] = '\0';
+	return (arr);
 }

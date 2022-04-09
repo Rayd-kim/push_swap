@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_stack.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youskim <youskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/07 14:43:39 by youskim           #+#    #+#             */
-/*   Updated: 2022/04/09 11:52:05 by youskim          ###   ########.fr       */
+/*   Created: 2021/11/17 14:31:04 by youskim           #+#    #+#             */
+/*   Updated: 2021/11/29 21:00:57 by youskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-t_node	*lst_stack(char *str, t_stack *a, int *index)
+char	*ft_strrchr(const char *str, int c)
 {
-	t_node	*lst;
+	char	k;
+	char	*ptr;
+	int		i;
 
-	lst = (t_node *)malloc(sizeof(t_node));
-	if (lst == 0)
-		return (NULL);
-	a->bottom->prev = lst;
-	lst->prev = NULL;
-	lst->next = a->bottom;
-	lst->value = ft_atoi_long(str);
-	lst->index = *index;
-	a->size++;
-	*index = *index + 1;
-	return (lst);
+	k = (char)c;
+	i = 0;
+	ptr = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == k)
+			ptr = (char *)&str[i];
+		i++;
+	}
+	if (c == 0)
+		return ((char *)&str[i]);
+	return (ptr);
 }

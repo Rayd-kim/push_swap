@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_first.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youskim <youskim@student.42seoul.k>        +#+  +:+       +#+        */
+/*   By: youskim <youskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 14:43:31 by youskim           #+#    #+#             */
-/*   Updated: 2022/04/07 14:43:32 by youskim          ###   ########.fr       */
+/*   Updated: 2022/04/09 11:51:59 by youskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_node	*lst_first(char *str, int *index)
 		return (NULL);
 	start->prev = NULL;
 	start->next = NULL;
-	start->value = ft_atoi(str);
+	start->value = ft_atoi_long(str);
 	start->index = *index;
 	return (start);
 }

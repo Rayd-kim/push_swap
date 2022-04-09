@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_stack.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youskim <youskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/07 14:43:39 by youskim           #+#    #+#             */
-/*   Updated: 2022/04/09 11:52:05 by youskim          ###   ########.fr       */
+/*   Created: 2021/11/23 13:44:16 by youskim           #+#    #+#             */
+/*   Updated: 2021/11/23 13:44:19 by youskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include <stdlib.h>
 
-t_node	*lst_stack(char *str, t_stack *a, int *index)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	t_node	*lst;
+	char			*arr;
+	unsigned int	i;
 
-	lst = (t_node *)malloc(sizeof(t_node));
-	if (lst == 0)
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	arr = (char *)malloc(sizeof(char) * (i + 1));
+	if (arr == 0)
 		return (NULL);
-	a->bottom->prev = lst;
-	lst->prev = NULL;
-	lst->next = a->bottom;
-	lst->value = ft_atoi_long(str);
-	lst->index = *index;
-	a->size++;
-	*index = *index + 1;
-	return (lst);
+	i = 0;
+	while (s[i] != '\0')
+	{
+		arr[i] = f(i, s[i]);
+		i++;
+	}
+	arr[i] = '\0';
+	return (arr);
 }

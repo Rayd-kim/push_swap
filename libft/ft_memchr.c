@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_stack.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youskim <youskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/07 14:43:39 by youskim           #+#    #+#             */
-/*   Updated: 2022/04/09 11:52:05 by youskim          ###   ########.fr       */
+/*   Created: 2021/11/19 19:22:36 by youskim           #+#    #+#             */
+/*   Updated: 2021/11/29 22:10:14 by youskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include <string.h>
 
-t_node	*lst_stack(char *str, t_stack *a, int *index)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	t_node	*lst;
+	unsigned char	*ptr;
+	unsigned char	k;
+	size_t			i;
 
-	lst = (t_node *)malloc(sizeof(t_node));
-	if (lst == 0)
-		return (NULL);
-	a->bottom->prev = lst;
-	lst->prev = NULL;
-	lst->next = a->bottom;
-	lst->value = ft_atoi_long(str);
-	lst->index = *index;
-	a->size++;
-	*index = *index + 1;
-	return (lst);
+	k = (unsigned char)c;
+	ptr = (unsigned char *)s;
+	i = 0;
+	while (i < n)
+	{
+		if (ptr[i] == k)
+			return ((void *)&ptr[i]);
+		i++;
+	}
+	return (NULL);
 }

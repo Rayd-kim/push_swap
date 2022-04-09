@@ -6,11 +6,23 @@
 /*   By: youskim <youskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 15:50:42 by youskim           #+#    #+#             */
-/*   Updated: 2022/01/22 15:46:35 by youskim          ###   ########.fr       */
+/*   Updated: 2022/04/09 12:10:20 by youskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+int	null_strlen(char *s1)
+{
+	int	length;
+
+	if (s1 == NULL)
+		return (0);
+	length = 0;
+	while (s1[length] != '\0')
+		length++;
+	return (length);
+}
 
 char	*str_cut(char *str)
 {
@@ -21,7 +33,7 @@ char	*str_cut(char *str)
 	i = 0;
 	while (str[i] != '\n')
 		i++;
-	cut = (char *)malloc(sizeof(char) * (ft_strlen(str) - i));
+	cut = (char *)malloc(sizeof(char) * (null_strlen(str) - i));
 	if (cut == 0)
 		return (NULL);
 	k = 0;
@@ -46,8 +58,8 @@ char	*str_join(char *s1, char *s2)
 
 	index1 = -1;
 	index2 = 0;
-	s1_len = ft_strlen(s1);
-	s2_len = ft_strlen(s2);
+	s1_len = null_strlen(s1);
+	s2_len = null_strlen(s2);
 	join_1_2 = (char *)malloc(sizeof(char) * (s1_len + s2_len + 1));
 	if (join_1_2 == 0)
 		return (NULL);

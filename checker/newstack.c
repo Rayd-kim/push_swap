@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_stack.c                                        :+:      :+:    :+:   */
+/*   newstack.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youskim <youskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/07 14:43:39 by youskim           #+#    #+#             */
-/*   Updated: 2022/04/09 11:52:05 by youskim          ###   ########.fr       */
+/*   Created: 2022/04/07 14:44:26 by youskim           #+#    #+#             */
+/*   Updated: 2022/04/09 12:03:42 by youskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
-t_node	*lst_stack(char *str, t_stack *a, int *index)
+t_stack	*newstack(void)
 {
-	t_node	*lst;
+	t_stack	*new;
 
-	lst = (t_node *)malloc(sizeof(t_node));
-	if (lst == 0)
+	new = (t_stack *)malloc(sizeof(t_stack));
+	if (new == 0)
 		return (NULL);
-	a->bottom->prev = lst;
-	lst->prev = NULL;
-	lst->next = a->bottom;
-	lst->value = ft_atoi_long(str);
-	lst->index = *index;
-	a->size++;
-	*index = *index + 1;
-	return (lst);
+	new->size = 0;
+	new->top = NULL;
+	new->bottom = NULL;
+	return (new);
 }

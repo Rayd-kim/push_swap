@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youskim <youskim@student.42seoul.k>        +#+  +:+       +#+        */
+/*   By: youskim <youskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 14:45:50 by youskim           #+#    #+#             */
-/*   Updated: 2022/04/07 14:45:52 by youskim          ###   ########.fr       */
+/*   Updated: 2022/04/09 12:13:09 by youskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "checker.h"
 
-void	set_first_stack(char *str, t_stack *stack, int *index)
+static void	set_first_stack(char *str, t_stack *stack, int *index)
 {
 	stack->top = lst_first(str, index);
 	stack->bottom = stack->top;
@@ -20,21 +20,22 @@ void	set_first_stack(char *str, t_stack *stack, int *index)
 	*index = *index + 1;
 }
 
-int	check_maxmin(char **split)
+static int	check_maxmin(char **split)
 {
 	int	i;
 
 	i = 0;
 	while (split[i] != NULL)
 	{
-		if (ft_atoi(split[i]) > 2147483647 || ft_atoi(split[i]) < -2147483648)
+		if (ft_atoi_long(split[i]) > 2147483647 || \
+			ft_atoi_long(split[i]) < -2147483648)
 			return (-1);
 		i++;
 	}
 	return (0);
 }
 
-int	check_split(char **split, t_stack *a)
+static int	check_split(char **split, t_stack *a)
 {
 	t_node	*temp;
 	int		check;
@@ -51,7 +52,7 @@ int	check_split(char **split, t_stack *a)
 		check = temp->value;
 		while (split[i] != NULL)
 		{
-			if (ft_atoi(split[i]) == check)
+			if (ft_atoi_long(split[i]) == check)
 				return (-1);
 			i++;
 		}
@@ -60,7 +61,7 @@ int	check_split(char **split, t_stack *a)
 	return (0);
 }
 
-int	split_to_stack(t_stack *a, int *index, char **split, int k)
+static int	split_to_stack(t_stack *a, int *index, char **split, int k)
 {
 	int	i;
 

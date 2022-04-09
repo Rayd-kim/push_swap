@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youskim <youskim@student.42seoul.k>        +#+  +:+       +#+        */
+/*   By: youskim <youskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 14:45:50 by youskim           #+#    #+#             */
-/*   Updated: 2022/04/07 14:45:52 by youskim          ###   ########.fr       */
+/*   Updated: 2022/04/09 11:58:11 by youskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int	check_maxmin(char **split)
 	i = 0;
 	while (split[i] != NULL)
 	{
-		if (ft_atoi(split[i]) > 2147483647 || ft_atoi(split[i]) < -2147483648)
+		if (ft_atoi_long(split[i]) > 2147483647 || \
+			ft_atoi_long(split[i]) < -2147483648)
 			return (-1);
 		i++;
 	}
@@ -51,7 +52,7 @@ int	check_split(char **split, t_stack *a)
 		check = temp->value;
 		while (split[i] != NULL)
 		{
-			if (ft_atoi(split[i]) == check)
+			if (ft_atoi_long(split[i]) == check)
 				return (-1);
 			i++;
 		}

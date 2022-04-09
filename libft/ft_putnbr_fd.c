@@ -1,30 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_stack.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youskim <youskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/07 14:43:39 by youskim           #+#    #+#             */
-/*   Updated: 2022/04/09 11:52:05 by youskim          ###   ########.fr       */
+/*   Created: 2021/11/18 12:35:06 by youskim           #+#    #+#             */
+/*   Updated: 2021/11/18 13:18:08 by youskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include <unistd.h>
 
-t_node	*lst_stack(char *str, t_stack *a, int *index)
+void	ft_putnbr_fd(int n, int fd)
 {
-	t_node	*lst;
+	unsigned int	num;
+	int				sign;
+	char			c;
 
-	lst = (t_node *)malloc(sizeof(t_node));
-	if (lst == 0)
-		return (NULL);
-	a->bottom->prev = lst;
-	lst->prev = NULL;
-	lst->next = a->bottom;
-	lst->value = ft_atoi_long(str);
-	lst->index = *index;
-	a->size++;
-	*index = *index + 1;
-	return (lst);
+	sign = 0;
+	if (n < 0)
+	{
+		sign = 1;
+		num = -n;
+	}
+	else
+		num = n;
+	if (sign == 1)
+		write (fd, "-", 1);
+	if (num >= 10)
+	{
+		ft_putnbr_fd(num / 10, fd);
+		c = num % 10 + '0';
+		write (fd, &c, 1);
+	}
+	else
+	{
+		c = num % 10 + '0';
+		write (fd, &c, 1);
+	}
 }

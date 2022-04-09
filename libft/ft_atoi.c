@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youskim <youskim@student.42seoul.k>        +#+  +:+       +#+        */
+/*   By: youskim <youskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/07 14:43:16 by youskim           #+#    #+#             */
-/*   Updated: 2022/04/07 14:43:17 by youskim          ###   ########.fr       */
+/*   Created: 2021/11/17 15:26:02 by youskim           #+#    #+#             */
+/*   Updated: 2021/11/30 13:48:00 by youskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static long long int	result_value(const char *str, int index, int sign)
+static int	result_value(const char *str, int index, int sign)
 {
 	unsigned long long int	result;
 
@@ -28,12 +28,12 @@ static long long int	result_value(const char *str, int index, int sign)
 		return (result * sign);
 }
 
-long long int	ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	int				i;
-	int				sign;
-	long long int	result;
-	int				pm_num;
+	int	i;
+	int	sign;
+	int	result;
+	int	pm_num;
 
 	i = 0;
 	sign = 1;
@@ -48,7 +48,7 @@ long long int	ft_atoi(const char *str)
 		i++;
 	}
 	if (pm_num > 1)
-		return (2147483648);
+		return (0);
 	result = result_value(str, i, sign);
 	return (result);
 }

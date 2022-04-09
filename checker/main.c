@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorithm.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youskim <youskim@student.42seoul.k>        +#+  +:+       +#+        */
+/*   By: youskim <youskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 14:43:05 by youskim           #+#    #+#             */
-/*   Updated: 2022/04/07 14:43:07 by youskim          ###   ########.fr       */
+/*   Updated: 2022/04/09 12:14:20 by youskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "checker.h"
+#include "get_next_line/get_next_line.h"
 
-int	check_operation(char *str)
+static int	check_operation(char *str)
 {
 	if (str[0] == 's' && str[1] == 'a' && str[2] == '\n')
 		return (0);
@@ -40,7 +41,7 @@ int	check_operation(char *str)
 		return (-1);
 }
 
-void	do_operation(char *str, t_stack *a, t_stack *b)
+static void	do_operation(char *str, t_stack *a, t_stack *b)
 {
 	if (str[0] == 's' && str[1] == 'a' && str[2] == '\n')
 		cheker_sa(a);
@@ -66,7 +67,7 @@ void	do_operation(char *str, t_stack *a, t_stack *b)
 		cheker_pb(b, a);
 }
 
-int	checker(t_stack *a, t_stack *b)
+static int	checker(t_stack *a, t_stack *b)
 {
 	char	*str;
 
@@ -87,7 +88,7 @@ int	checker(t_stack *a, t_stack *b)
 	return (0);
 }
 
-void	sort_check(t_stack *a, t_stack *b)
+static void	sort_check(t_stack *a, t_stack *b)
 {
 	t_node	*temp;
 
