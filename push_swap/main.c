@@ -88,19 +88,19 @@ int	main(int argc, char *argv[])
 	b = newstack();
 	if (null_check(a, b) == -1)
 	{
-		write (1, "Error\n", 6);
+		write (2, "Error\n", 6);
 		return (0);
 	}
 	if (push_swap(argc, argv, a) == -1)
 	{
-		write (1, "Error\n", 6);
+		write (2, "Error\n", 6);
 		error_free(a, b);
 		return (0);
 	}
 	sort_arr(a);
 	a_to_b_first(a, b, a->size, &first);
 	if (first < 0)
-		write (1, "Error\n", 6);
+		write (2, "Error\n", 6);
 	error_free(a, b);
 	return (0);
 }
