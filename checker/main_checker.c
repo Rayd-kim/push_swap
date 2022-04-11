@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_checker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youskim <youskim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: youskim <youskim@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/07 14:43:05 by youskim           #+#    #+#             */
-/*   Updated: 2022/04/09 12:48:10 by youskim          ###   ########.fr       */
+/*   Created: 2022/04/11 14:31:16 by youskim           #+#    #+#             */
+/*   Updated: 2022/04/11 14:31:19 by youskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ static void	sort_check(t_stack *a, t_stack *b)
 			temp = temp->prev;
 	}
 	write (1, "OK\n", 3);
+	error_free(a, b);
 }
 
 int	main(int argc, char *argv[])
